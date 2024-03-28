@@ -5,6 +5,13 @@ import json
 
 if 'count' not in st.session_state:
 	st.session_state.count = 0
+     
+# State for deck1 and deck2
+if 'deck1' not in st.session_state:
+    st.session_state.deck1 = None
+
+if 'deck2' not in st.session_state:
+    st.session_state.deck2 = None
 
 with open('count.txt') as f:
     c = int(f.read().strip())
@@ -32,6 +39,8 @@ def process(id, player_1, player_2):
     with open("./processed.json", "w") as f:
         json.dump(processed, f)
 
+    st.session_state.deck1 = None
+    st.session_state.deck2 = None
     update_count()
     return 
 
@@ -48,19 +57,9 @@ st.set_page_config(layout="wide")
 
 st.markdown("<h1 style='text-align: center; color: grey;'>Deck data collection</h1>", unsafe_allow_html=True)
 st.markdown("<h2 style='text-align: center; color: white;'>For the purposes of training neural networks</h2>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center; color: white;'>Please select the decks used in the game</h3>", unsafe_allow_html=True)
 
 
-
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
-# State for deck1 and deck2
-if 'deck1' not in st.session_state:
-    st.session_state.deck1 = None
-
-if 'deck2' not in st.session_state:
-    st.session_state.deck2 = None
         
 col1, col2 = st.columns(2)
 col1.selectbox('Deck 1', decks, label_visibility="collapsed", key='deck1')
