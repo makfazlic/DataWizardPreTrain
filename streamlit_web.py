@@ -72,13 +72,13 @@ st.button('Submit', use_container_width=True, on_click=process, args=(data[st.se
 
 grid = st.columns(11)
 
-for i in range(len(data[st.session_state.count][3])):
+for i in range(len(data[st.session_state.count][1])):
 
     im = data[st.session_state.count][1][i]
     image = "./images/"+im+".jpg"
     grid[i%5].image(image, use_column_width=True)
 
-for i in range(len(data[st.session_state.count][4])):
+for i in range(len(data[st.session_state.count][2])):
 
     im = data[st.session_state.count][2][i]
     image = "./images/"+im+".jpg"
